@@ -80,6 +80,10 @@ Reference numbers for each footnote are assigned automatically,
 so that you don't need to fix numbers by yourself
 when you want to insert new footnote before other footnotes.
 
+In the post you want to use footnote-extra,
+do not use any footnote-octopress tags or PHP Markdown Extra's
+footnote syntax itself.
+
 
 Finally, add a following line in the end of the post:
 
@@ -89,6 +93,17 @@ or
 
     {%footnotes_list_extra%}
 
+It is useful to add
+
+    post.puts "{%footnotes_extra%}"
+
+to the end of `new_post` task in Rake file.
+
+`{%footnotes_extra%}` does nothing if there is no
+`{%fnex%}`(`{%footnote_extra%}`)
+in the post.
+In this case, it is no probrem even if there is footnote-octopress tag 
+or PHP Markdown Exra footnote syntax in the post.
 
 
 # Options
