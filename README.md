@@ -144,6 +144,15 @@ index 74d35ba..f9c2cee 100644
  pygments: false # default python pygments have been replaced by pygments.rb
 ```
 
+Next, change a RDiscount dependence in `plugins/footnote.rb`、
+
+``` diff
+-ref_text = RDiscount.new("#{text}<a href='#fnref:#{@current_reference}' rev='footnote'>↩</a>").to_html
++ref_text = Kramdown::Document.new("#{text}<a href='#fnref:#{@current_reference}' rev='footnote'>↩</a>").to_html
+```
+
+Now you can use footnote-octopress and footnote-extra with Kramdown!.
+
 One of important points is that you can't use Triple-Backtick
 Code Block with Kramdown.
 But you can use Fenced Code Block of PHP Markdown Extra.
