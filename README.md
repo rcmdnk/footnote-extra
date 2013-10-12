@@ -154,7 +154,8 @@ and before:
 * List (`*`)
 
 At least such Indented Code Clock can be written w/o empty lines
-at RDiscout.
+at RDiscout, while Kramdwon can't distinguish normal lines and code block
+if there is no empty line.
 
 If you have written with RDiscount,
 there are some places where Kramdown can't recognize correctly.
