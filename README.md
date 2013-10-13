@@ -76,9 +76,6 @@ You can also use code syntax with indent:
     And `inline code`.
     {%endfnex%}.
 
-:warning: These multi-line descriptions work well with Kramdwon,
-while RDiscount may not work well with them.
-
 Reference numbers for each footnote are assigned automatically,
 so that you don't need to fix numbers by yourself
 when you want to insert new footnote before other footnotes.
