@@ -1,6 +1,3 @@
-# Footnote for Jekyll (Octupress) with PHP Markdown Extra
-# rcmdnk (https://github.com/rcmdnk/footnote-extra)
-
 module Jekyll
   class FootNoteExtra < Liquid::Block
     def initialize(name, markup, tokens)
@@ -12,8 +9,12 @@ module Jekyll
       # (indented with four spaces.)
       note = ""
       super.strip().each_line{|l| note += "    "+l}
-      context['page']['fn_count'] = (context['page'].has_key?('fn_count')? context['page']['fn_count'] : 0) + 1
-      context['page']['fn_notes'] = (context['page'].has_key?('fn_notes')? context['page']['fn_notes'] : "") + "\n\n[^#{context['page']['fn_count']}]: #{note}"
+      context['page']['fn_count'] =\
+        (context['page'].has_key?('fn_count')? context['page']['fn_count'] : 0)\
+        + 1
+      context['page']['fn_notes'] =\
+        (context['page'].has_key?('fn_notes')? context['page']['fn_notes'] : "")\
+        + "\n\n[^#{context['page']['fn_count']}]: #{note}"
       "[^#{context['page']['fn_count']}]"
     end
   end
@@ -24,7 +25,8 @@ module Jekyll
     end
 
     def render(context)
-      fn_notes = (context['page'].has_key?('fn_notes')? context['page']['fn_notes'] : "")
+      fn_notes =\
+        (context['page'].has_key?('fn_notes')? context['page']['fn_notes'] : "")
       context['page']['fn_notes'] = ""
       fn_notes
     end

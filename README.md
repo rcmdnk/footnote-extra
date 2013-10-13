@@ -8,6 +8,9 @@ This plugin requires parser which has an extension of
 such [Kramdown](http://kramdown.rubyforge.org/)
 or [RDiscount (>=2.0.7)](http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released/).
 
+:warning: If you use persers which doesn't support PHP Markdown Extra,
+you can use `footnote_inline.rb`. See [below](#inline).
+
 This plugin can live with
 [footnote-octopress](https://github.com/fcy/footnote-octopress).
 JavaScript was forked from this plugin.
@@ -105,86 +108,32 @@ in the post.
 In this case, it is no probrem even if there is footnote-octopress tag 
 or PHP Markdown Exra footnote syntax in the post.
 
+# For non PHP Markdown Extra users {#inline}
+
+Copy `plugins/footnote_inline.rb` instead of `footnote_extra.rb` to your `plugins` directory.
+
+If you are using persers other than Kramdown, please modify
+around line 15 of `footnote_inline.rb` for `to_html` function.
+For RDiscount, just change the comment line:
+
+``` diff
+-#note = RDiscount.new(super).to_html
+-note = Kramdown::Document.new(super).to_html
++note = RDiscount.new(super).to_html
++#note = Kramdown::Document.new(super).to_html
+```
+
+An usage is similar as `footntoe_extra`.
+
+Use `{%fnin%}`-`{%endfnin%}` or `{%footnote_inline%}`-`{%endfootnote_inline%}`
+instead of `fnex` or `footnote_extra`.
+
+And use `{%footnotes_inline%}` or `{%footnotes_list_inline%}`
+instead of `{%footnotes_extra%}` or `{%footnotes_list_extra%}`.
+
 
 # Options
 Change footnote styles in `sass/plugins/_footnote.scss` as you like.
 footnote-extra's `_footnote.scss` may be useful
 even if you already have `_footnote.scss` from footnote-octopress.
-
-# Tips: RDiscount to Kramdown at Octopress
-Kramdwon has many useful extensions,
-but it is very preferable especially
-if you've met errors of invalid UTF-8 with RDiscount.
-
-If you've not installed Kramdown, add
-
-    gem 'kramdown'
-
-to Gemfile and do `bundle install`.
-(If you installed recent `jekyll` with bundler, `kramdown` should also have been installed in the same time.)
-
-Then, update `_config.yml`'s markdown setting:
-
-``` diff
-diff --git a/_config.yml b/_config.yml
-index 74d35ba..f9c2cee 100644
---- a/_config.yml
-+++ b/_config.yml
-@@ -33,12 +33,7 @@ destination: public
- plugins: plugins
- code_dir: downloads/code
- category_dir: blog/categories
--markdown: rdiscount
--rdiscount:
--  extensions:
--    - autolink
--    - footnotes
--    - smart
-+markdown: kramdown
- pygments: false # default python pygments have been replaced by pygments.rb
-```
-
-Next, change a RDiscount dependence in `plugins/footnote.rb`、
-
-``` diff
--ref_text = RDiscount.new("#{text}<a href='#fnref:#{@current_reference}' rev='footnote'>↩</a>").to_html
-+ref_text = Kramdown::Document.new("#{text}<a href='#fnref:#{@current_reference}' rev='footnote'>↩</a>").to_html
-```
-
-Now you can use footnote-octopress and footnote-extra with Kramdown!.
-
-One of important points is that you can't use Triple-Backtick
-Code Block with Kramdown.
-But you can use Fenced Code Block of PHP Markdown Extra.
-
-If you used `Table Of Contents`(`generate_toc`) of RDiscount,
-you can use Kramdown's TOC like (w/o extensions):
-
-    * Table Of Contents
-    {:toc}
-
-Another annoying point is that Kramdown is more sensitive to
-the empty line around Markdown syntax than RDiscount.
-
-You need to give an empty line before and after:
-
-* Indented Code Block
-* Reference with `>`
-
-and before:
-
-* Headers (`#`, `##`,... especially when `##` is used soon after `#`)
-* Horizontal Rules (`---`, `***`, `- - -`... and even `<hr>`)
-* List (`*`)
-
-At least such Indented Code Clock can be written w/o empty lines
-at RDiscout, while Kramdwon can't distinguish normal lines and code block
-if there is no empty line.
-
-If you have written with RDiscount,
-there are some places where Kramdown can't recognize correctly.
-Please be careful even if you could generate w/o errors.
-
-See [this blog](http://rcmdnk.github.io/blog/2013/10/12/blog-octopress-kramdown/)(Japanese) for more information.
-
 
