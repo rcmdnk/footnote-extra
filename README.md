@@ -134,3 +134,7 @@ Change footnote styles in `sass/plugins/_footnote.scss` as you like.
 footnote-extra's `_footnote.scss` may be useful
 even if you already have `_footnote.scss` from footnote-octopress.
 
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/rcmdnk/footnote-extra/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
