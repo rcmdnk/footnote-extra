@@ -9,7 +9,7 @@ such [Kramdown](http://kramdown.rubyforge.org/)
 or [RDiscount (>=2.0.7)](http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released/).
 
 :warning: If you use persers which doesn't support PHP Markdown Extra,
-you can use `footnote_inline.rb`. See [below](#inline).
+you can use `footnote_inline.rb`. See [below](https://github.com/rcmdnk/footnote-extra#for-non-php-markdown-extra-users-inline).
 
 This plugin can live with
 [footnote-octopress](https://github.com/fcy/footnote-octopress).
@@ -108,7 +108,7 @@ in the post.
 In this case, it is no probrem even if there is footnote-octopress tag 
 or PHP Markdown Exra footnote syntax in the post.
 
-# For non PHP Markdown Extra users {#inline}
+# For non PHP Markdown Extra users
 
 Copy `plugins/footnote_inline.rb` instead of `footnote_extra.rb` to your `plugins` directory.
 
