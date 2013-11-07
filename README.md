@@ -80,7 +80,7 @@ Reference numbers for each footnote are assigned automatically,
 so that you don't need to fix numbers by yourself
 when you want to insert new footnote before other footnotes.
 
-In the post you want to use footnote-extra,
+In the post for which you want to use footnote-extra,
 do not use any footnote-octopress tags or PHP Markdown Extra's
 footnote syntax itself.
 
