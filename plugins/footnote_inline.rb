@@ -11,12 +11,14 @@ module Jekyll
         (context['page'].has_key?('fnin_count')?\
            context['page']['fnin_count'] : 0
         ) + 1
+      note = "#{super} <a href='#fninref:#{context['page']['fnin_count']}' rel='reference'>&#8617;</a>"
       #note = RDiscount.new(super).to_html
-      note = Kramdown::Document.new(super).to_html
+      note = Kramdown::Document.new(note).to_html
+      #note.chomp!
       context['page']['fnin_notes'] =\
         (context['page'].has_key?('fnin_notes')?\
            context['page']['fnin_notes'] : "") +\
-        "<li id='fn:#{context['page']['fnin_count']}'>#{note}<a href='#fnref:#{context['page']['fnin_count']}' rel='reference'>&#8617;</a></li>"
+        "<li id='fnin:#{context['page']['fnin_count']}'>#{note}</li>"
       "<sup id='fninref:#{context['page']['fnin_count']}'><a href='#fnin:#{context['page']['fnin_count']}' rel='footnote'>#{context['page']['fnin_count']}</a></sup>"
     end
   end
