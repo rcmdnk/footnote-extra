@@ -9,7 +9,7 @@ such [Kramdown](http://kramdown.rubyforge.org/)
 or [RDiscount (>=2.0.7)](http://dafoster.net/articles/2013/02/02/rdiscount-2.0.7-released/).
 
 :warning: If you use persers which doesn't support PHP Markdown Extra,
-you can use `footnote_inline.rb`. See [below](https://github.com/rcmdnk/footnote-extra#for-non-php-markdown-extra-users-inline).
+you can use [footnote-inline](https://github.com/rcmdnk/footnote-inline).
 
 This plugin can live with
 [footnote-octopress](https://github.com/fcy/footnote-octopress).
@@ -104,30 +104,6 @@ to the end of `new_post` task in Rake file.
 in the post.
 In this case, it is no probrem even if there is footnote-octopress tag 
 or PHP Markdown Exra footnote syntax in the post.
-
-# For non PHP Markdown Extra users
-
-Copy `plugins/footnote_inline.rb` instead of `footnote_extra.rb` to your `plugins` directory.
-
-If you are using persers other than Kramdown, please modify
-around line 15 of `footnote_inline.rb` for `to_html` function.
-For RDiscount, just change the comment line:
-
-``` diff
--#note = RDiscount.new(super).to_html
--note = Kramdown::Document.new(super).to_html
-+note = RDiscount.new(super).to_html
-+#note = Kramdown::Document.new(super).to_html
-```
-
-An usage is similar as `footntoe_extra`.
-
-Use `{%fnin%}`-`{%endfnin%}` or `{%footnote_inline%}`-`{%endfootnote_inline%}`
-instead of `fnex` or `footnote_extra`.
-
-And use `{%footnotes_inline%}` or `{%footnotes_list_inline%}`
-instead of `{%footnotes_extra%}` or `{%footnotes_list_extra%}`.
-
 
 # Options
 Change footnote styles in `sass/plugins/_footnote.scss` as you like.
